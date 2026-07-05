@@ -3,11 +3,6 @@ class Queue:
     Queue (FIFO) diimplementasikan menggunakan list Python.
     - enqueue -> list.append()  (menambah di belakang antrian)
     - dequeue -> list.pop(0)    (mengambil dari depan antrian)
-
-    Catatan: pop(0) butuh menggeser seluruh elemen sebanyak 1 posisi,
-    jadi untuk data yang sangat banyak versi linked list lebih efisien.
-    Untuk kebutuhan tugas ini (data disimpan di memori, skala kecil),
-    versi list ini sudah cukup dan lebih sederhana untuk dipahami.
     """
     def __init__(self):
         self.items = []
