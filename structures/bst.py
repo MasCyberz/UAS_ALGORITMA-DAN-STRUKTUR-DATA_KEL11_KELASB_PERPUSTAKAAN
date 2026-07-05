@@ -34,9 +34,7 @@ class BinarySearchTree:
         # Root = node paling atas (awal pohon)
         self.root = None
 
-    # =========================
     # INSERT DATA BUKU
-    # =========================
 
     def insert(self, buku):
         """
@@ -82,9 +80,7 @@ class BinarySearchTree:
             # Kalau ID sama, data ditolak (tidak boleh duplikat)
             return False
 
-    # =========================
     # SEARCH DATA BUKU
-    # =========================
 
     def search(self, id_buku):
         """
@@ -112,9 +108,52 @@ class BinarySearchTree:
         # Kalau lebih besar, cari ke kanan
         return self._search(current.right, id_buku)
 
-    # =========================
+    # DELETE NODE
+
+    def delete(self, id_buku):
+        """
+        Menghapus node berdasarkan id_buku.
+        """
+
+        self.root = self._delete(self.root, id_buku)
+
+
+    def _delete(self, current, id_buku):
+
+        if current is None:
+            return None
+
+        # cari ke kiri
+        if id_buku < current.data.id:
+            current.left = self._delete(current.left, id_buku)
+
+        # cari ke kanan
+        elif id_buku > current.data.id:
+            current.right = self._delete(current.right, id_buku)
+
+        # ketemu node yang mau dihapus
+        else:
+
+            # CASE 1: tidak punya anak
+            if current.left is None and current.right is None:
+                return None
+
+            # CASE 2: hanya punya 1 anak (kanan)
+            if current.left is None:
+                return current.right
+
+            # CASE 2: hanya punya 1 anak (kiri)
+            if current.right is None:
+                return current.left
+
+            # CASE 3: punya 2 anak
+            successor = self._find_min(current.right)
+            current.data = successor.data
+            current.right = self._delete(current.right, successor.data.id)
+
+        return current
+
     # INORDER TRAVERSAL
-    # =========================
 
     def inorder(self):
         """
@@ -145,9 +184,7 @@ class BinarySearchTree:
         # Kunjungi kanan
         self._inorder(current.right, hasil)
 
-    # =========================
     # LEVEL ORDER (BFS)
-    # =========================
 
     def level_order(self):
         """
@@ -185,9 +222,7 @@ class BinarySearchTree:
 
         return hasil
 
-    # =========================
     # TAMPILKAN STRUKTUR POHON
-    # =========================
 
     def display(self):
         """
@@ -221,9 +256,7 @@ class BinarySearchTree:
         # Rekursi ke kanan
         self._display(current.right, level + 1, "R---- ")
 
-    # =========================
     # TINGGI POHON
-    # =========================
 
     def height(self):
         """
@@ -248,9 +281,7 @@ class BinarySearchTree:
         # Ambil yang paling tinggi + 1 (node sekarang)
         return 1 + max(left_height, right_height)
 
-    # =========================
     # JUMLAH NODE
-    # =========================
 
     def count_nodes(self):
         """
