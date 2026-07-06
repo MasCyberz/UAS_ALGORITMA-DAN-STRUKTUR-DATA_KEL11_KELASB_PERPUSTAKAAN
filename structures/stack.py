@@ -42,5 +42,5 @@ class Stack:
             print("Stack kosong.")
             return
         print("\nIsi Stack (atas -> bawah)\n")
-        for idx, data in enumerate(reversed(self.items)):
+        for idx, data in enumerate(reversed(self.items), start=1 ):
             print(f"{idx}. {data}")

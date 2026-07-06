@@ -153,7 +153,7 @@ class BinaryHeap:
         for i, (key, value) in enumerate(self.heap):
             print(f"{i}. Key = {key} | Value = {value}")
 
-    def display_tree(self, index=0, ident="", branch="Root"):
+    def display_tree(self, index=0, indent="", branch="Root"):
         """
         Menampilkan heap dalam bentuk pohon.
         """
@@ -166,8 +166,6 @@ class BinaryHeap:
 
         priority, data = self.heap[index]
         anggota = data["anggota"]
-
-        indent = "   " * ident
 
         print(
             f"{indent}{branch} "
