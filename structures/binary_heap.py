@@ -153,7 +153,7 @@ class BinaryHeap:
         for i, (key, value) in enumerate(self.heap):
             print(f"{i}. Key = {key} | Value = {value}")
 
-    def display_tree(self, index=0, level=0, prefix="Root : "):
+    def display_tree(self, index=0, ident="", branch="Root"):
         """
         Menampilkan heap dalam bentuk pohon.
         """
@@ -164,13 +164,33 @@ class BinaryHeap:
         if index >= len(self.heap):
             return
 
-        key, value = self.heap[index]
+        priority, data = self.heap[index]
+        anggota = data["anggota"]
+
+        indent = "   " * ident
 
         print(
-            "   " * level +
-            prefix +
-            f"{key} : {value}"
+            f"{indent}{branch} "
+            f"[Prioritas: {priority}] "
+            f"{anggota.nama} "
+            f"({anggota.kategori}) "
+            f"=> Buku {data['id_buku']}"
         )
 
-        self.display_tree(self._left(index), level + 1, "L---- ") 
-        self.display_tree(self._right(index), level + 1, "R---- ")
+        # print(
+        #     "   " * level +
+        #     prefix +
+        #     f"{key} : {value}"
+        # )
+
+        # self.display_tree(self._left(index), level + 1, "L---- ") 
+        # self.display_tree(self._right(index), level + 1, "R---- ")
+
+        left = self._left(index)
+        right = self._right(index)
+
+        if left < len(self.heap):
+            self.display_tree(left, indent + "│   ", "├──L")
+
+        if right < len(self.heap):
+            self.display_tree(right, indent + "│   ", "└──R")
