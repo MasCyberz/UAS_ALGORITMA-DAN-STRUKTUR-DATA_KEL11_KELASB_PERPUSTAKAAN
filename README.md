@@ -13,7 +13,7 @@ Seluruh struktur data dibangun dari nol menggunakan Python dan saling terhubung 
 ## Anggota Kelompok
 
 | No | Nama | NIM | Username Github | 
-|----|------|-----|
+|----|------|-----| ----------------|
 | 1  | Dimas Alif Ardiansyah | K3525004 | MasCyberz |
 | 2  | Jihan Sofia Kamila | K3525029 | seopheea |
 | 3  | Vincensius Vicko Riska Saputra | K3525042 | pikoopikk |
