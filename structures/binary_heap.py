@@ -14,26 +14,46 @@ class BinaryHeap:
     """
 
     def __init__(self, mode="min"):
+        # Tempat menyimpan seluruh elemen heap dalam bentuk list/array
         self.heap = []
+        # Menentukan apakah ini min-heap atau max-heap
         self.mode = mode.lower()
 
     def _parent(self, index):
+        """
+        Mencari index parent dari suatu node.
+        Rumus standar heap berbasis array.
+        """
         return (index - 1) // 2
 
     def _left(self, index):
+        """
+        Mencari index anak kiri dari suatu node.
+        """
         return 2 * index + 1
 
     def _right(self, index):
+        """
+        Mencari index anak kanan dari suatu node.
+        """
         return 2 * index + 2
 
     def _compare(self, a, b):
-
+        """
+        Membandingkan dua elemen (a dan b), masing-masing berbentuk (key, value).
+        Mengembalikan True apabila 'a' harus berada
+        lebih dekat ke root dibanding 'b'.
+        - Kalau mode "min": key lebih kecil menang (naik ke atas)
+        - Kalau mode "max": key lebih besar menang (naik ke atas)
+        """
         if self.mode == "min":
             return a[0] < b[0]
-
         return a[0] > b[0]
 
     def _swap(self, i, j):
+        """
+        Menukar posisi dua elemen di array heap.
+        """
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
     def is_empty(self):
@@ -43,17 +63,26 @@ class BinaryHeap:
         return len(self.heap)
 
     def peek(self):
+        """
+        Lihat elemen root tanpa menghapusnya.
+        """
         if self.is_empty():
             return None
 
         return self.heap[0]
 
     def insert(self, key, value):
+        """
+        Menambah elemen baru: taruh di akhir, lalu naikkan ke posisi yang benar.
+        """
         self.heap.append((key, value))
 
         self._heapify_up(len(self.heap) - 1)
 
     def extract(self):
+        """
+        Mengambil & menghapus root: gantikan dengan elemen terakhir, lalu turunkan.
+        """
         if self.is_empty():
             return None
 
@@ -64,10 +93,12 @@ class BinaryHeap:
         if not self.is_empty():
             self.heap[0] = last
             self._heapify_down(0)
-
         return root
 
     def _heapify_up(self, index):
+        """
+        Menaikkan elemen selama masih lebih diprioritaskan dari parent-nya.
+        """
         while index > 0:
 
             parent = self._parent(index) 
@@ -79,13 +110,14 @@ class BinaryHeap:
                 break
 
     def _heapify_down(self, index):
+        """
+        Menurunkan elemen selama masih ada anak yang lebih diprioritaskan.
+        """
         size = len(self.heap)
-
         while True:
 
             left = self._left(index)
             right = self._right(index)
-
             target = index
 
             if left < size and self._compare(self.heap[left], self.heap[target]):
@@ -101,11 +133,17 @@ class BinaryHeap:
             index = target
 
     def build_heap(self, data):
+        """
+        Membangun heap dari list yang sudah ada tanpa insert satu-satu (O(n)).
+        """
         self.heap = list(data) 
         for i in range(len(self.heap) // 2 - 1, -1, -1):
             self._heapify_down(i)
 
     def display(self):
+        """
+        Menampilkan isi heap apa adanya (bukan urutan prioritas).
+        """
         if self.is_empty():
             print("Heap kosong.")
             return
@@ -116,6 +154,9 @@ class BinaryHeap:
             print(f"{i}. Key = {key} | Value = {value}")
 
     def display_tree(self, index=0, level=0, prefix="Root : "):
+        """
+        Menampilkan heap dalam bentuk pohon.
+        """
         if self.is_empty():
             print("Heap kosong.")
             return
