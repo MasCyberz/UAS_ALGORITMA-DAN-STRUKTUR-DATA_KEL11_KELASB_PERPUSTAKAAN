@@ -1,4 +1,5 @@
 class Queue:
+    
     """
     Queue (FIFO) diimplementasikan menggunakan list Python.
     - enqueue -> list.append()  (menambah di belakang antrian)
