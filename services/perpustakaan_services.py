@@ -194,7 +194,7 @@ class PerpustakaanServices:
         elif kategori == "mahasiswa":
             return 4
 
-        return 4
+        return 5
 
     # MENU 8
     # QUEUE -> HEAP
