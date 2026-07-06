@@ -1,5 +1,5 @@
 from models.anggota import Anggota
-from services.perpustakaan_service import PerpustakaanService
+from services.perpustakaan_services import PerpustakaanServices
 
 
 # Penyimpanan anggota sederhana di memori (nim -> objek Anggota).
@@ -19,7 +19,7 @@ def cari_atau_buat_anggota():
 
     print("Anggota baru, silakan lengkapi data.")
     nama = input("Nama anggota   : ").strip()
-    kategori = input("Kategori (Mahasiswa/Dosen/Staff): ").strip()
+    kategori = input("Kategori (Mahasiswa Tingkat Akhir/Mahasiswa/Dosen/Staff): ").strip()
     anggota = Anggota(nim, nama, kategori)
     daftar_anggota[nim] = anggota
     return anggota
@@ -64,14 +64,14 @@ def main_menu():
     """
     Loop menu utama aplikasi perpustakaan berbasis Console (CLI).
     """
-    service = PerpustakaanService()
+    service = PerpustakaanServices()
 
     while True:
         tampilkan_menu()
         pilihan = input("Pilih menu: ").strip()
 
         if pilihan == "1":
-            id_buku = input_int("ID Buku      : ")
+            id_buku = input("ID Buku      : ").strip().upper()
             judul = input("Judul Buku   : ").strip()
             penulis = input("Penulis      : ").strip()
             tahun = input_int("Tahun Terbit : ")
@@ -82,11 +82,11 @@ def main_menu():
             service.tampilkan_katalog()
 
         elif pilihan == "3":
-            id_buku = input_int("ID Buku yang dicari: ")
+            id_buku = input("ID Buku yang dicari: ").strip().upper()
             service.cari_buku(id_buku)
 
         elif pilihan == "4":
-            id_buku = input_int("ID Buku yang dihapus: ")
+            id_buku = input("ID Buku yang dihapus: ").strip().upper()
             service.hapus_buku(id_buku)
 
         elif pilihan == "5":
@@ -94,7 +94,7 @@ def main_menu():
 
         elif pilihan == "6":
             anggota = cari_atau_buat_anggota()
-            id_buku = input_int("ID Buku yang dipinjam: ")
+            id_buku = input("ID Buku yang dipinjam: ").strip().upper()
             service.ajukan_peminjaman(anggota, id_buku)
 
         elif pilihan == "7":
@@ -111,7 +111,7 @@ def main_menu():
 
         elif pilihan == "11":
             anggota = cari_atau_buat_anggota()
-            id_buku = input_int("ID Buku yang dikembalikan: ")
+            id_buku = input("ID Buku yang dikembalikan: ").strip().upper()
             service.kembalikan_buku(anggota, id_buku)
 
         elif pilihan == "12":

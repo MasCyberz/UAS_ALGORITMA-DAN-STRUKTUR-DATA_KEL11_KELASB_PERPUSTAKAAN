@@ -4,7 +4,7 @@ class Buku:
     Digunakan oleh BST sebagai data utama yang disimpan.
     """
 
-    def __init__(self, id_buku, judul, penulis, tahun, stok):
+    def __init__(self, id_buku: str, judul, penulis, tahun, stok):
         self.id = id_buku
         self.judul = judul
         self.penulis = penulis

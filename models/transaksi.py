@@ -4,13 +4,14 @@ class Transaksi:
     peminjaman atau pengembalian buku.
     """
 
-    def __init__(self, anggota, buku):
+    def __init__(self, anggota, buku, jenis):
         self.anggota = anggota
         self.buku = buku
+        self.jenis = jenis
 
     def __str__(self):
         return (
-            f"{self.anggota.nama} "
-            f"meminjam "
-            f"'{self.buku.judul}'"
+            f"{self.jenis} | "
+            f"{self.anggota.nama} | "
+            f"{self.buku.judul}"
         )
