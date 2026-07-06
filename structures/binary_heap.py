@@ -101,9 +101,7 @@ class BinaryHeap:
             index = target
 
     def build_heap(self, data):
-        self.heap = list(data)
-
-        # len(self.heap) // 2 - 1 = index parent non-leaf paling akhir
+        self.heap = list(data) 
         for i in range(len(self.heap) // 2 - 1, -1, -1):
             self._heapify_down(i)
 
