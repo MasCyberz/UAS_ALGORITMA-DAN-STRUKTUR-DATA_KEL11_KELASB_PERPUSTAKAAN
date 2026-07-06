@@ -1,4 +1,5 @@
 class Stack:
+    
     """
     Stack (LIFO) diimplementasikan menggunakan list Python.
     - push  -> list.append()  (menambah di ujung/akhir list)
